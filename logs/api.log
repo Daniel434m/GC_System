@@ -1,0 +1,6 @@
+[2025-09-29 18:12:04] [INFO] New API request received
+[2025-09-29 18:12:04] [DEBUG] Raw input: {"Unit Name":"Family Unit","Arrival":"29/09/2025","Departure":"05/10/2025","Occupants":2,"Ages":[21,25]}
+[2025-09-29 18:12:04] [INFO] Payload validated successfully
+[2025-09-29 18:12:04] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-29","Departure":"2025-10-05","Guests":[{"Age Group":"Adult"},{"Age Group":"Adult"}]}
+[2025-09-29 18:12:04] [INFO] Calling remote API...
+[2025-09-29 18:12:06] [INFO] Remote API responded with HTTP 200
