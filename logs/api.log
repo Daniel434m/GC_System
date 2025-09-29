@@ -16,3 +16,75 @@
 [2025-09-29 18:31:39] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-29","Departure":"2025-10-12","Guests":[{"Age Group":"Child"}]}
 [2025-09-29 18:31:39] [INFO] Calling remote API...
 [2025-09-29 18:31:42] [INFO] Remote API responded with HTTP 200
+[2025-09-29 18:47:10] [INFO] New API request received
+[2025-09-29 18:47:10] [DEBUG] Raw input: {"Unit Name":"Luxury Suite","Arrival":"29/09/2025","Departure":"05/10/2025","Occupants":2,"Ages":[30,30]}
+[2025-09-29 18:47:10] [INFO] Payload validated successfully
+[2025-09-29 18:47:10] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-29","Departure":"2025-10-05","Guests":[{"Age Group":"Adult"},{"Age Group":"Adult"}]}
+[2025-09-29 18:47:10] [INFO] Calling remote API...
+[2025-09-29 18:47:13] [INFO] Remote API responded with HTTP 200
+[2025-09-29 18:50:22] [INFO] New API request received
+[2025-09-29 18:50:22] [DEBUG] Raw input: {"Unit Name":"Deluxe Bungalow","Arrival":"01/10/2025","Departure":"05/10/2025","Occupants":3,"Ages":[30,28,25]}
+[2025-09-29 18:50:22] [INFO] Payload validated successfully
+[2025-09-29 18:50:22] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-10-01","Departure":"2025-10-05","Guests":[{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"}]}
+[2025-09-29 18:50:22] [INFO] Calling remote API...
+[2025-09-29 18:50:25] [INFO] Remote API responded with HTTP 200
+[2025-09-29 21:37:46] [INFO] New API request received
+[2025-09-29 21:37:46] [DEBUG] Raw input: {"Unit Name":"Standard Room","Arrival":"29/09/2025","Departure":"02/10/2025","Occupants":2,"Ages":[30,19]}
+[2025-09-29 21:37:46] [INFO] Payload validated successfully
+[2025-09-29 21:37:46] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-29","Departure":"2025-10-02","Guests":[{"Age Group":"Adult"},{"Age Group":"Adult"}]}
+[2025-09-29 21:37:46] [INFO] Calling remote API...
+[2025-09-29 21:37:51] [INFO] Remote API responded with HTTP 200
+[2025-09-29 21:38:17] [INFO] New API request received
+[2025-09-29 21:38:17] [DEBUG] Raw input: {"Unit Name":"Standard Room","Arrival":"29/09/2025","Departure":"02/10/2025","Occupants":2,"Ages":[30,15]}
+[2025-09-29 21:38:17] [INFO] Payload validated successfully
+[2025-09-29 21:38:17] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-29","Departure":"2025-10-02","Guests":[{"Age Group":"Adult"},{"Age Group":"Child"}]}
+[2025-09-29 21:38:17] [INFO] Calling remote API...
+[2025-09-29 21:38:18] [INFO] Remote API responded with HTTP 200
+[2025-09-29 21:54:28] [INFO] New API request received
+[2025-09-29 21:54:28] [DEBUG] Raw input: {"Unit Name":"Luxury Suite","Arrival":"29/09/2025","Departure":"02/10/2025","Occupants":2,"Ages":[30,15]}
+[2025-09-29 21:54:28] [INFO] Payload validated successfully
+[2025-09-29 21:54:28] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-29","Departure":"2025-10-02","Guests":[{"Age Group":"Adult"},{"Age Group":"Child"}]}
+[2025-09-29 21:54:28] [INFO] Calling remote API...
+[2025-09-29 21:54:31] [INFO] Remote API responded with HTTP 200
+[2025-09-29 22:02:03] [INFO] New API request received
+[2025-09-29 22:02:03] [DEBUG] Raw input: {"Unit Name":"Standard Room","Arrival":"29/09/2025","Departure":"02/10/2025","Occupants":2,"Ages":[30,15]}
+[2025-09-29 22:02:03] [INFO] Payload validated successfully
+[2025-09-29 22:02:03] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-29","Departure":"2025-10-02","Guests":[{"Age Group":"Adult"},{"Age Group":"Child"}]}
+[2025-09-29 22:02:03] [INFO] Calling remote API...
+[2025-09-29 22:02:05] [INFO] Remote API responded with HTTP 200
+[2025-09-29 22:09:20] [INFO] New API request received
+[2025-09-29 22:09:20] [DEBUG] Raw input: {"Unit Name":"Luxury Suite","Arrival":"29/09/2025","Departure":"02/10/2025","Occupants":3,"Ages":[30,25,17]}
+[2025-09-29 22:09:20] [INFO] Payload validated successfully
+[2025-09-29 22:09:20] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-29","Departure":"2025-10-02","Guests":[{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Child"}]}
+[2025-09-29 22:09:20] [INFO] Calling remote API...
+[2025-09-29 22:09:22] [INFO] Remote API responded with HTTP 200
+[2025-09-29 22:12:37] [INFO] New API request received
+[2025-09-29 22:12:37] [DEBUG] Raw input: {"Unit Name":"Deluxe Bungalow","Arrival":"29/09/2025","Departure":"03/10/2025","Occupants":4,"Ages":[24,23,22,21]}
+[2025-09-29 22:12:37] [INFO] Payload validated successfully
+[2025-09-29 22:12:37] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-29","Departure":"2025-10-03","Guests":[{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"}]}
+[2025-09-29 22:12:37] [INFO] Calling remote API...
+[2025-09-29 22:12:38] [INFO] Remote API responded with HTTP 200
+[2025-09-29 22:15:02] [INFO] New API request received
+[2025-09-29 22:15:02] [DEBUG] Raw input: {"Unit Name":"Deluxe Bungalow","Arrival":"29/09/2025","Departure":"03/10/2025","Occupants":1,"Ages":[24]}
+[2025-09-29 22:15:02] [INFO] Payload validated successfully
+[2025-09-29 22:15:02] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-29","Departure":"2025-10-03","Guests":[{"Age Group":"Adult"}]}
+[2025-09-29 22:15:02] [INFO] Calling remote API...
+[2025-09-29 22:15:03] [INFO] Remote API responded with HTTP 200
+[2025-09-29 22:26:05] [INFO] New API request received
+[2025-09-29 22:26:05] [DEBUG] Raw input: {"Unit Name":"Luxury Suite","Arrival":"29/09/2025","Departure":"30/09/2025","Occupants":2,"Ages":[30,15]}
+[2025-09-29 22:26:05] [INFO] Payload validated successfully
+[2025-09-29 22:26:05] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-29","Departure":"2025-09-30","Guests":[{"Age Group":"Adult"},{"Age Group":"Child"}]}
+[2025-09-29 22:26:05] [INFO] Calling remote API...
+[2025-09-29 22:26:08] [INFO] Remote API responded with HTTP 200
+[2025-09-29 22:33:19] [INFO] New API request received
+[2025-09-29 22:33:19] [DEBUG] Raw input: {"Unit Name":"Luxury Suite","Arrival":"29/09/2025","Departure":"02/10/2025","Occupants":2,"Ages":[30,25]}
+[2025-09-29 22:33:19] [INFO] Payload validated successfully
+[2025-09-29 22:33:19] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-29","Departure":"2025-10-02","Guests":[{"Age Group":"Adult"},{"Age Group":"Adult"}]}
+[2025-09-29 22:33:19] [INFO] Calling remote API...
+[2025-09-29 22:33:21] [INFO] Remote API responded with HTTP 200
+[2025-09-29 22:49:21] [INFO] New API request received
+[2025-09-29 22:49:21] [DEBUG] Raw input: {"Unit Name":"Luxury Suite","Arrival":"29/09/2025","Departure":"02/10/2025","Occupants":1,"Ages":[30]}
+[2025-09-29 22:49:21] [INFO] Payload validated successfully
+[2025-09-29 22:49:21] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-29","Departure":"2025-10-02","Guests":[{"Age Group":"Adult"}]}
+[2025-09-29 22:49:21] [INFO] Calling remote API...
+[2025-09-29 22:49:23] [INFO] Remote API responded with HTTP 200
