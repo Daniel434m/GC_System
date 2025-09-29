@@ -88,3 +88,9 @@
 [2025-09-29 22:49:21] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-29","Departure":"2025-10-02","Guests":[{"Age Group":"Adult"}]}
 [2025-09-29 22:49:21] [INFO] Calling remote API...
 [2025-09-29 22:49:23] [INFO] Remote API responded with HTTP 200
+[2025-09-29 23:10:17] [INFO] New API request received
+[2025-09-29 23:10:17] [DEBUG] Raw input: {"Unit Name":"Standard Room","Arrival":"30/09/2025","Departure":"03/10/2025","Occupants":1,"Ages":[30]}
+[2025-09-29 23:10:17] [INFO] Payload validated successfully
+[2025-09-29 23:10:17] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-30","Departure":"2025-10-03","Guests":[{"Age Group":"Adult"}]}
+[2025-09-29 23:10:17] [INFO] Calling remote API...
+[2025-09-29 23:10:20] [INFO] Remote API responded with HTTP 200
