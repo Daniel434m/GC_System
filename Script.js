@@ -39,6 +39,14 @@ function convertToBackendFormat(dateStr) {
     return `${day}/${month}/${year}`;
 }
 
+function formatCurrency(amount) {
+    if (!amount) return 'N/A';
+    return new Intl.NumberFormat('en-NA', {
+        style: 'currency',
+        currency: 'NAD'
+    }).format(amount);
+}
+
 document.getElementById('bookingForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -111,32 +119,94 @@ document.getElementById('bookingForm').addEventListener('submit', async function
 
 function displayResults(data, unitName, arrival, departure) {
     const container = document.getElementById('resultsContainer');
-    const results = Array.isArray(data) ? data : [data];
+    
+    // Handle if data is a response object with nested structure
+    let responseData = data;
+    if (data.Response) {
+        responseData = data.Response;
+    }
 
     let html = '<div class="results-grid">';
 
-    results.forEach(item => {
+    // Check if it's the actual API response structure
+    if (responseData['Location ID'] || responseData['Total Charge']) {
+        const totalCharge = responseData['Total Charge'] || 0;
+        const extrasCharge = responseData['Extras Charge'] || 0;
+        const effectiveRate = responseData['Effective Average Daily Rate'] || 0;
+        const rooms = responseData['Rooms'] || 0;
+        const specialRateDesc = responseData['Special Rate Description'] || 'Standard Rate';
+        const guests = responseData['Guests'] || [];
+        
+        // Count adults and children
+        const adultCount = guests.filter(g => g['Age Group'] === 'Adult').length;
+        const childCount = guests.filter(g => g['Age Group'] === 'Child').length;
+
         html += `
             <div class="result-item">
                 <h3>${unitName || 'Accommodation'}</h3>
                 <div class="result-detail">
-                    <span class="result-label">📅 Date Range:</span>
-                    <span class="result-value">${formatDateDisplay(arrival)} - ${formatDateDisplay(departure)}</span>
+                    <span class="result-label">📅 Check-in:</span>
+                    <span class="result-value">${formatDateDisplay(arrival)}</span>
                 </div>
                 <div class="result-detail">
-                    <span class="result-label">💰 Rate:</span>
-                    <span class="rate-value">${item.rate || item.Rate || 'N/A'}</span>
+                    <span class="result-label">📅 Check-out:</span>
+                    <span class="result-value">${formatDateDisplay(departure)}</span>
                 </div>
                 <div class="result-detail">
-                    <span class="result-label">✓ Availability:</span>
-                    <span class="result-value">${item.availability || item.Availability || 'Available'}</span>
+                    <span class="result-label">👥 Guests:</span>
+                    <span class="result-value">${adultCount} Adult${adultCount !== 1 ? 's' : ''}${childCount > 0 ? `, ${childCount} Child${childCount !== 1 ? 'ren' : ''}` : ''}</span>
+                </div>
+                <div class="result-detail">
+                    <span class="result-label">🏠 Rooms:</span>
+                    <span class="result-value">${rooms}</span>
                 </div>
             </div>
-        `;
-    });
 
-    if (results.length === 0 || !results[0].rate) {
-        html = `
+            <div class="result-item">
+                <h3>Rate Information</h3>
+                <div class="result-detail">
+                    <span class="result-label">📋 Rate Type:</span>
+                    <span class="result-value">${specialRateDesc}</span>
+                </div>
+                <div class="result-detail">
+                    <span class="result-label">💰 Daily Rate:</span>
+                    <span class="rate-value">${formatCurrency(effectiveRate)}</span>
+                </div>
+                <div class="result-detail">
+                    <span class="result-label">💵 Total Charge:</span>
+                    <span class="rate-value">${formatCurrency(totalCharge)}</span>
+                </div>
+                ${extrasCharge > 0 ? `
+                <div class="result-detail">
+                    <span class="result-label">➕ Extras:</span>
+                    <span class="result-value">${formatCurrency(extrasCharge)}</span>
+                </div>
+                ` : ''}
+            </div>
+
+            <div class="result-item">
+                <h3>Booking Details</h3>
+                <div class="result-detail">
+                    <span class="result-label">✅ Status:</span>
+                    <span class="result-value" style="color: #28a745; font-weight: bold;">Available</span>
+                </div>
+                ${responseData['Booking Group ID'] ? `
+                <div class="result-detail">
+                    <span class="result-label">🔖 Booking Group:</span>
+                    <span class="result-value">${responseData['Booking Group ID']}</span>
+                </div>
+                ` : ''}
+                ${responseData['Special Rate Code'] ? `
+                <div class="result-detail">
+                    <span class="result-label">🎫 Rate Code:</span>
+                    <span class="result-value">${responseData['Special Rate Code']}</span>
+                </div>
+                ` : ''}
+            </div>
+        `;
+    } else {
+        // Fallback for unexpected response format
+        html += `
             <div class="result-item">
                 <h3>${unitName}</h3>
                 <div class="result-detail">
@@ -145,7 +215,7 @@ function displayResults(data, unitName, arrival, departure) {
                 </div>
                 <div class="result-detail">
                     <span class="result-label">Response:</span>
-                    <span class="result-value">${JSON.stringify(data)}</span>
+                    <span class="result-value" style="font-size: 0.9em; word-break: break-word;">${JSON.stringify(data, null, 2)}</span>
                 </div>
             </div>
         `;

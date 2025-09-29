@@ -319,3 +319,53 @@ input, select {
 		grid-template-columns: 1fr;
 	}
 }
+
+/* Add to the end of Style.css */
+
+.result-item h3 {
+	color: #8B4513;
+	margin-bottom: 15px;
+	font-size: 1.3em;
+	padding-bottom: 10px;
+	border-bottom: 2px solid #D2691E;
+}
+
+.result-detail {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 0;
+	border-bottom: 1px solid #DEB887;
+	align-items: center;
+}
+
+	.result-detail:last-child {
+		border-bottom: none;
+	}
+
+.result-value {
+	color: #333;
+	font-weight: 500;
+	text-align: right;
+	max-width: 60%;
+	word-wrap: break-word;
+}
+
+.rate-value {
+	font-size: 1.3em;
+	color: #DAA520;
+	font-weight: bold;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+	.result-detail {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 5px;
+	}
+
+	.result-value {
+		text-align: left;
+		max-width: 100%;
+	}
+}
