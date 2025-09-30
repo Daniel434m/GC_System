@@ -2,7 +2,7 @@
 
 ## Quick Start in GitHub Codespaces
 
-1. Click **Code** → **Codespaces** → **Click on special umbrella**
+1. Click **Code** → **Codespaces** → **Click on active code space**
 2. Wait for the environment to load  
    - The PHP server will start automatically on port **8000**  
    - Navigate to ports, then hover over the forwarded address, finally open in browser.
