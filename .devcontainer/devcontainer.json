@@ -1,0 +1,26 @@
+{
+	"name": "Gondwana Booking System",
+	"image": "mcr.microsoft.com/devcontainers/php:8.2",
+
+	"postCreateCommand": "echo 'Devcontainer ready!'",
+
+	"forwardPorts": [ 8000 ],
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"bmewburn.vscode-intelephense-client",
+				"esbenp.prettier-vscode"
+			]
+		}
+	},
+
+	"portsAttributes": {
+		"8000": {
+			"label": "PHP Server",
+			"onAutoForward": "openBrowser"
+		}
+	},
+
+	"postStartCommand": "php -S 0.0.0.0:8000 -t ."
+}
