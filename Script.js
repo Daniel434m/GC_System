@@ -193,6 +193,42 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
     });
 });
 
+
+
+	// Set minimum date to today for date inputs
+document.addEventListener('DOMContentLoaded', function() {
+    updateGuestCounters();
+
+	// Get today's date in YYYY-MM-DD format
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = String(today.getMonth() +1).padStart(2, '0');
+    var day = String(today.getDate()).padStart(2, '0');
+    var todayString = year + '-' +month + '-' +day;
+
+    // Set minimum date for arrival and departure
+    var arrivalInput = document.getElementById('arrival');
+    var departureInput = document.getElementById('departure');
+
+    if (arrivalInput) {
+        arrivalInput.setAttribute('min', todayString);
+    }
+
+    if (departureInput) {
+        departureInput.setAttribute('min', todayString);
+    }
+
+    	// Update departure min date when arrival changes
+    arrivalInput.addEventListener('change', function() {
+        var selectedArrival = this.value;
+        if (selectedArrival) {
+            departureInput.setAttribute('min', selectedArrival);
+            }
+            });
+            });
+
+
+
 function displayResults(data, unitName, arrival, departure, inputAges) {
     const container = document.getElementById('resultsContainer');
 
