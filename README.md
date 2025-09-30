@@ -1,7 +1,9 @@
-## Quick Start in Codespaces
-```bash
-# Start PHP server
-php -S localhost:8000 &
+# Gondwana Collection Booking System
 
-# Open in browser
-echo "Visit: http://localhost:8000/Index.html"
+## Quick Start in GitHub Codespaces
+
+1. Click "Code" → "Codespaces" → "Create codespace on main"
+2. Wait for the environment to load
+3. In the terminal, run:
+```bash
+   php -S 0.0.0.0:8000
