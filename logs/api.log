@@ -94,3 +94,33 @@
 [2025-09-29 23:10:17] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-30","Departure":"2025-10-03","Guests":[{"Age Group":"Adult"}]}
 [2025-09-29 23:10:17] [INFO] Calling remote API...
 [2025-09-29 23:10:20] [INFO] Remote API responded with HTTP 200
+[2025-09-30 00:34:13] [INFO] New API request received
+[2025-09-30 00:34:13] [DEBUG] Raw input: {"Unit Name":"Standard Room","Arrival":"30/09/2025","Departure":"03/10/2025","Occupants":2,"Ages":[30,17]}
+[2025-09-30 00:34:13] [INFO] Payload validated successfully
+[2025-09-30 00:34:13] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-09-30","Departure":"2025-10-03","Guests":[{"Age Group":"Adult"},{"Age Group":"Child"}]}
+[2025-09-30 00:34:13] [INFO] Calling remote API...
+[2025-09-30 00:34:15] [INFO] Remote API responded with HTTP 200
+[2025-09-30 07:55:59] [INFO] New API request received
+[2025-09-30 07:55:59] [DEBUG] Raw input: {"Unit Name":"Family Unit","Arrival":"01/10/2025","Departure":"05/10/2025","Occupants":2,"Ages":[17,20]}
+[2025-09-30 07:55:59] [INFO] Payload validated successfully
+[2025-09-30 07:55:59] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-10-01","Departure":"2025-10-05","Guests":[{"Age Group":"Child"},{"Age Group":"Adult"}]}
+[2025-09-30 07:55:59] [INFO] Calling remote API...
+[2025-09-30 07:56:02] [INFO] Remote API responded with HTTP 200
+[2025-09-30 13:10:00] [INFO] New API request received
+[2025-09-30 13:10:00] [DEBUG] Raw input: {"Unit Name":"Standard Room","Arrival":"01/10/2025","Departure":"05/10/2025","Occupants":2,"Ages":[18,25]}
+[2025-09-30 13:10:00] [INFO] Payload validated successfully
+[2025-09-30 13:10:00] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-10-01","Departure":"2025-10-05","Guests":[{"Age Group":"Adult"},{"Age Group":"Adult"}]}
+[2025-09-30 13:10:00] [INFO] Calling remote API...
+[2025-09-30 13:10:02] [INFO] Remote API responded with HTTP 200
+[2025-09-30 13:51:04] [INFO] New API request received
+[2025-09-30 13:51:04] [DEBUG] Raw input: {"Unit Name":"Standard Room","Arrival":"01/10/2025","Departure":"05/10/2025","Occupants":18,"Ages":[25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25]}
+[2025-09-30 13:51:04] [INFO] Payload validated successfully
+[2025-09-30 13:51:04] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-10-01","Departure":"2025-10-05","Guests":[{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"},{"Age Group":"Adult"}]}
+[2025-09-30 13:51:04] [INFO] Calling remote API...
+[2025-09-30 13:51:07] [INFO] Remote API responded with HTTP 200
+[2025-09-30 13:55:55] [INFO] New API request received
+[2025-09-30 13:55:55] [DEBUG] Raw input: {"Unit Name":"Standard Room","Arrival":"01/10/2025","Departure":"05/10/2025","Occupants":1,"Ages":[25]}
+[2025-09-30 13:55:55] [INFO] Payload validated successfully
+[2025-09-30 13:55:55] [DEBUG] Payload transformed: {"Unit Type ID":-2147483637,"Arrival":"2025-10-01","Departure":"2025-10-05","Guests":[{"Age Group":"Adult"}]}
+[2025-09-30 13:55:55] [INFO] Calling remote API...
+[2025-09-30 13:55:56] [INFO] Remote API responded with HTTP 200
