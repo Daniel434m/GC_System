@@ -1,10 +1,15 @@
 ﻿function addAgeField() {
-	const container = document.getElementById('agesContainer');
+    const container = document.getElementById('agesContainer');
     const wrapper = document.createElement('div');
     wrapper.className = 'age-input-wrapper';
     wrapper.innerHTML = '<input type="number" class="age-input" value="25" min="0" max="120" required>' +
         '<button type="button" class="remove-age" onclick="removeAge(this)">×</button>';
     container.appendChild(wrapper);
+    
+    // Update occupants field to match number of age inputs
+    const ageInputs = document.querySelectorAll('.age-input');
+    document.getElementById('occupants').value = ageInputs.length;
+    
     updateGuestCounters();
 }
 
@@ -12,10 +17,15 @@ function removeAge(button) {
     const ageInputs = document.querySelectorAll('.age-input');
     if (ageInputs.length > 1) {
         button.parentElement.remove();
+        
+        // Update occupants field after removal
+        const remainingInputs = document.querySelectorAll('.age-input');
+        document.getElementById('occupants').value = remainingInputs.length;
+        
         updateGuestCounters();
     } else {
         showMessage('You must have at least one guest age', 'error');
-}
+    }
 }
 
 function updateGuestCounters() {
@@ -33,19 +43,18 @@ function updateGuestCounters() {
 
     if (minors > 0) {
         const minorAges = ages.filter(age => age < 18 && age > 0);
-        minorsList.innerHTML = minorAges.map(age => `<li>Age: ${age
-        }</li>`).join('');
+        minorsList.innerHTML = minorAges.map(age => `<li>Age: ${age}</li>`).join('');
         minorsSection.classList.remove('hidden');
-        } else {
+    } else {
         minorsSection.classList.add('hidden');
     }
-    }
+}
 
 document.addEventListener('input', function(e) {
     if (e.target.classList.contains('age-input')) {
         updateGuestCounters();
-        }
-        });
+    }
+});
 
 document.addEventListener('input', function(e) {
     if (e.target.id === 'occupants') {
@@ -53,39 +62,38 @@ document.addEventListener('input', function(e) {
         const currentAgeInputs = document.querySelectorAll('.age-input').length;
 
         if (occupants > currentAgeInputs) {
-            const toAdd = occupants -currentAgeInputs;
+            const toAdd = occupants - currentAgeInputs;
             for (let i = 0; i < toAdd; i++) {
                 addAgeField();
-                }
-                } else if (occupants < currentAgeInputs && occupants > 0) {
-            const toRemove = currentAgeInputs -occupants;
+            }
+        } else if (occupants < currentAgeInputs && occupants > 0) {
+            const toRemove = currentAgeInputs - occupants;
             const ageInputWrappers = document.querySelectorAll('.age-input-wrapper');
             for (let j = 0; j < toRemove; j++) {
                 if (ageInputWrappers.length > 1) {
-                    ageInputWrappers[ageInputWrappers.length -1 -j].remove();
-                    }
-                    }
+                    ageInputWrappers[ageInputWrappers.length - 1 - j].remove();
+                }
+            }
             updateGuestCounters();
-            }
-            }
-            });
+        }
+    }
+});
 
 function showMessage(message, type) {
     type = type || 'error';
     const messageArea = document.getElementById('messageArea');
-    const className = type === 'error' ? 'error-message': 'success-message';
+    const className = type === 'error' ? 'error-message' : 'success-message';
     messageArea.innerHTML = `<div class="${className}">${message}</div>`;
     setTimeout(() => {
         messageArea.innerHTML = '';
     }, 5000);
-    }
+}
 
 function formatDateDisplay(dateStr) {
     if (!dateStr) return '';
     const date = new Date(dateStr);
-    const months =['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    	return `${date.getDate()
-    } ${months[date.getMonth()]} ${date.getFullYear() }`;
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
 }
 
 function convertToBackendFormat(dateStr) {
@@ -93,32 +101,29 @@ function convertToBackendFormat(dateStr) {
     const year = parts[0];
     const month = parts[1];
     const day = parts[2];
-    return `${day
-    }/${month
-    }/${year
-    }`;
-    }
+    return `${day}/${month}/${year}`;
+}
 
-    function formatCurrency(amount) {
-		if (!amount || amount === 0) return 'N/A';
-		return new Intl.NumberFormat('en-NA', {
-    		style : 'currency',
-currency: 'NAD',
-	minimumFractionDigits: 2,
-		maximumFractionDigits: 2
-}).format(amount);
+function formatCurrency(amount) {
+    if (!amount || amount === 0) return 'N/A';
+    return new Intl.NumberFormat('en-NA', {
+        style: 'currency',
+        currency: 'NAD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }).format(amount);
 }
 
 function calculateDailyRate(totalCharge, arrival, departure) {
-const startDate = new Date(arrival);
-const endDate = new Date(departure);
-const nights = Math.ceil((endDate -startDate) / (1000 * 60 * 60 * 24));
+    const startDate = new Date(arrival);
+    const endDate = new Date(departure);
+    const nights = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
 
-if(nights > 0 && totalCharge > 0) {
+    if (nights > 0 && totalCharge > 0) {
         return totalCharge / nights;
-}
-    return 0;
     }
+    return 0;
+}
 
 document.getElementById('bookingForm').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -133,10 +138,10 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
         return;
     }
 
-    	if (new Date(arrival) >= new Date(departure)) {
-			showMessage('Departure date must be after arrival date', 'error');
-			return;
-    	}
+    if (new Date(arrival) >= new Date(departure)) {
+        showMessage('Departure date must be after arrival date', 'error');
+        return;
+    }
 
     const ageInputs = document.querySelectorAll('.age-input');
     const ages = Array.from(ageInputs).map(input => parseInt(input.value));
@@ -144,25 +149,25 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
     if (ages.length !== occupants) {
         showMessage('Please add ages for all ' + occupants + ' guests', 'error');
         return;
-        }
+    }
 
-		const payload = {
+    const payload = {
         "Unit Name": unitName,
         "Arrival": convertToBackendFormat(arrival),
-        "Departure" : convertToBackendFormat(departure),
+        "Departure": convertToBackendFormat(departure),
         "Occupants": occupants,
         "Ages": ages
-        };
+    };
 
     document.getElementById('resultsCard').classList.remove('hidden');
     document.getElementById('loading').classList.add('show');
     document.getElementById('resultsContainer').innerHTML = '';
 
     fetch('api/rates.php', {
-    		method: 'POST',
-    		headers: { 'Content-Type': 'application/json' },
-    	body: JSON.stringify(payload)
-    	})
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
     .then(response => response.json())
     .then(data => {
         document.getElementById('loading').classList.remove('show');
@@ -170,25 +175,23 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
         if (data.success) {
             displayResults(data.data, unitName, arrival, departure, ages);
             showMessage('✓ Rates retrieved successfully!', 'success');
-            } else {
+        } else {
             document.getElementById('resultsContainer').innerHTML =
                 `<div class="error-message">
                     <strong>Error:</strong> ${data.error}<br>
-                    ${data.details ? `<small>${data.details
-                    }</small>`: ''}
+                    ${data.details ? `<small>${data.details}</small>` : ''}
                 </div>`;
-                    }
-                    })
+        }
+    })
     .catch(error => {
         document.getElementById('loading').classList.remove('show');
         document.getElementById('resultsContainer').innerHTML =
             `<div class="error-message">
-                <strong>Connection Error:</strong> ${error.message
-                }<br>
+                <strong>Connection Error:</strong> ${error.message}<br>
                 <small>Please check if the API is running.</small>
             </div>`;
-            });
-            });
+    });
+});
 
 function displayResults(data, unitName, arrival, departure, inputAges) {
     const container = document.getElementById('resultsContainer');
@@ -196,15 +199,15 @@ function displayResults(data, unitName, arrival, departure, inputAges) {
     let responseData = data;
     if (data.Response) {
         responseData = data.Response;
-}
+    }
 
     let html = '<div class="results-grid">';
 
     if (responseData['Location ID'] || responseData['Total Charge']) {
-        const totalCharge = responseData['Total Charge']|| 0;
-        const extrasCharge = responseData['Extras Charge']|| 0;
-        let effectiveRate = responseData['Effective Average Daily Rate']|| 0;
-        const rooms = responseData['Rooms']|| 0;
+        const totalCharge = responseData['Total Charge'] || 0;
+        const extrasCharge = responseData['Extras Charge'] || 0;
+        let effectiveRate = responseData['Effective Average Daily Rate'] || 0;
+        const rooms = responseData['Rooms'] || 0;
         const specialRateDesc = responseData['Special Rate Description'] || 'Standard Rate';
 
         const adultCount = inputAges.filter(age => age >= 18).length;
@@ -214,25 +217,23 @@ function displayResults(data, unitName, arrival, departure, inputAges) {
         let dailyRate = effectiveRate;
         if (!dailyRate || dailyRate === 0) {
             dailyRate = calculateDailyRate(totalCharge, arrival, departure);
-            }
+        }
 
         html += `<div class="result-item">
-            <h3>${unitName || 'Accommodation'
-        }</h3>
+            <h3>${unitName || 'Accommodation'}</h3>
             <div class="result-detail"><span class="result-label">📅 Check-in:</span>
-            <span class="result-value">${formatDateDisplay(arrival)
-            }</span></div>
+            <span class="result-value">${formatDateDisplay(arrival)}</span></div>
             <div class="result-detail"><span class="result-label">📅 Check-out:</span>
-            <span class="result-value">${formatDateDisplay(departure) }</span></div>
+            <span class="result-value">${formatDateDisplay(departure)}</span></div>
             <div class="result-detail"><span class="result-label">👥 Guests:</span>
             <span class="result-value">${adultCount} Adult${adultCount !== 1 ? 's' : ''}${childCount > 0 ? `, ${childCount} Child${childCount !== 1 ? 'ren' : ''}` : ''}</span></div>`;
 
         if (childCount > 0) {
             html += `<div class="result-detail">
                 <span class="result-label">👶 Children Ages:</span>
-                <span class="result-value">${childAges.join(', ') }</span>
+                <span class="result-value">${childAges.join(', ')}</span>
             </div>`;
-            }
+        }
 
         html += `<div class="result-detail"><span class="result-label">🏠 Rooms:</span>
             <span class="result-value">${rooms}</span></div></div>
@@ -240,16 +241,16 @@ function displayResults(data, unitName, arrival, departure, inputAges) {
             <div class="result-detail"><span class="result-label">📋 Rate Type:</span>
             <span class="result-value">${specialRateDesc}</span></div>
             <div class="result-detail"><span class="result-label">💰 Daily Rate:</span>
-            <span class="rate-value">${formatCurrency(dailyRate) }</span></div>
+            <span class="rate-value">${formatCurrency(dailyRate)}</span></div>
             <div class="result-detail"><span class="result-label">💵 Total Charge:</span>
-            <span class="rate-value">${formatCurrency(totalCharge) }</span></div>`;
+            <span class="rate-value">${formatCurrency(totalCharge)}</span></div>`;
 
         if (extrasCharge > 0) {
             html += `<div class="result-detail">
                 <span class="result-label">➕ Extras:</span>
-                <span class="result-value">${formatCurrency(extrasCharge) }</span>
+                <span class="result-value">${formatCurrency(extrasCharge)}</span>
             </div>`;
-            }
+        }
 
         html += `</div>
             <div class="result-item"><h3>Booking Details</h3>
@@ -271,21 +272,21 @@ function displayResults(data, unitName, arrival, departure, inputAges) {
         html += `<div class="result-item">
             <h3>${unitName}</h3>
             <div class="result-detail"><span class="result-label">📅 Date Range:</span>
-            <span class="result-value">${formatDateDisplay(arrival) } - ${formatDateDisplay(departure) }</span></div>
+            <span class="result-value">${formatDateDisplay(arrival)} - ${formatDateDisplay(departure)}</span></div>
             <div class="result-detail"><span class="result-label">Response:</span>
-            <span class="result-value" style="font-size: 0.9em; word-break: break-word;">${JSON.stringify(data, null, 2) }</span></div>
+            <span class="result-value" style="font-size: 0.9em; word-break: break-word;">${JSON.stringify(data, null, 2)}</span></div>
         </div>`;
-            }
+    }
 
     html += '</div>';
     container.innerHTML = html;
-            }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     updateGuestCounters();
-    });
+});
 
-    	// Hero Carousel
+// Hero Carousel
 (function() {
     const slides = document.querySelectorAll('.hero-slide');
     let currentSlide = 0;
@@ -293,17 +294,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function nextSlide() {
         slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide +1) % slides.length;
+        currentSlide = (currentSlide + 1) % slides.length;
         slides[currentSlide].classList.add('active');
-        }
+    }
 
     function startCarousel() {
         slideInterval = setInterval(nextSlide, 5000);
-        }
+    }
 
     function stopCarousel() {
         clearInterval(slideInterval);
-        }
+    }
 
     // Start carousel
     startCarousel();
@@ -312,4 +313,4 @@ document.addEventListener('DOMContentLoaded', function() {
     const carousel = document.getElementById('heroCarousel');
     carousel.addEventListener('mouseenter', stopCarousel);
     carousel.addEventListener('mouseleave', startCarousel);
-        }) ();
+})();
