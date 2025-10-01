@@ -81,4 +81,3 @@ try {
         'details' => $e->getMessage()
     ], 500);
 }
-?>

@@ -17,4 +17,3 @@ define('LOG_FILE', __DIR__ . '/../logs/api.log');
 if (!file_exists(__DIR__ . '/../logs')) {
     mkdir(__DIR__ . '/../logs', 0755, true);
 }
-?>

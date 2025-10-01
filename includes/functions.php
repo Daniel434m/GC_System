@@ -4,7 +4,9 @@
  */
 
 function logMessage($message, $type = 'INFO') {
-    if (!ENABLE_LOGGING) return;
+    if (!ENABLE_LOGGING) {
+        return;
+    }
     $timestamp = date('Y-m-d H:i:s');
     $logMessage = "[{$timestamp}] [{$type}] {$message}\n";
     file_put_contents(LOG_FILE, $logMessage, FILE_APPEND);
@@ -26,7 +28,6 @@ function validatePayload($data) {
         }
     }
     
-    // Accept DD/MM/YYYY format from frontend
     if (!preg_match('/^\d{2}\/\d{2}\/\d{4}$/', $data['Arrival'])) {
         return ['valid' => false, 'message' => "Invalid Arrival date format. Expected DD/MM/YYYY"];
     }
@@ -47,7 +48,6 @@ function validatePayload($data) {
 }
 
 function convertDateFormat($date) {
-    // Convert DD/MM/YYYY to YYYY-MM-DD for the remote API
     $parts = explode('/', $date);
     if (count($parts) === 3) {
         return $parts[2] . '-' . $parts[1] . '-' . $parts[0];
@@ -112,4 +112,3 @@ function callRemoteApi($payload) {
         'raw_response' => $response
     ];
 }
-?>

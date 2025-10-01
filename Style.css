@@ -37,67 +37,6 @@ body {
 	line-height: 1.6;
 }
 
-.background-animation {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-	z-index: 0;
-	pointer-events: none;
-}
-
-.shape {
-	position: absolute;
-	border-radius: 50%;
-	filter: blur(80px);
-	opacity: 0.3;
-	animation: float 20s ease-in-out infinite;
-}
-
-.shape-1 {
-	width: 400px;
-	height: 400px;
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-	top: -100px;
-	left: -100px;
-	animation-delay: 0s;
-}
-
-.shape-2 {
-	width: 350px;
-	height: 350px;
-	background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-	bottom: -100px;
-	right: -100px;
-	animation-delay: 5s;
-}
-
-.shape-3 {
-	width: 300px;
-	height: 300px;
-	background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	animation-delay: 10s;
-}
-
-@keyframes float {
-	0%, 100% {
-		transform: translate(0, 0) scale(1);
-	}
-
-	33% {
-		transform: translate(50px, -50px) scale(1.1);
-	}
-
-	66% {
-		transform: translate(-30px, 30px) scale(0.9);
-	}
-}
-
 .container {
 	max-width: 1400px;
 	margin: 0 auto;
@@ -575,6 +514,7 @@ input, select {
 		transform: translateY(-4px);
 		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
 	}
+
 	.result-item h3 {
 		font-size: 22px;
 		font-weight: 700;
@@ -682,7 +622,70 @@ input, select {
 	display: none;
 }
 
-/* Responsive Design */
+.hero-carousel {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	z-index: -1;
+}
+
+.hero-slide {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	image-rendering: high-quality;
+	opacity: 0;
+	transform: scale(1);
+	transition: opacity 1.8s ease-in-out, transform 8s ease-in-out;
+}
+
+	.hero-slide.active {
+		opacity: 1;
+		transform: scale(1.08);
+		filter: brightness(1.15);
+	}
+
+	.hero-slide::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.55) 100%);
+	}
+
+html {
+	scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--gray-lighter);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--primary);
+	border-radius: 5px;
+}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: var(--primary-dark);
+	}
+
+*:focus-visible {
+	outline: 3px solid var(--primary);
+	outline-offset: 2px;
+}
+
 @media (max-width: 1024px) {
 	.main-content {
 		grid-template-columns: 1fr;
@@ -781,45 +784,10 @@ input, select {
 	}
 }
 
-/* Smooth scrolling */
-html {
-	scroll-behavior: smooth;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-	width: 10px;
-}
-
-::-webkit-scrollbar-track {
-	background: var(--gray-lighter);
-}
-
-::-webkit-scrollbar-thumb {
-	background: var(--primary);
-	border-radius: 5px;
-}
-
-	::-webkit-scrollbar-thumb:hover {
-		background: var(--primary-dark);
-	}
-
-/* Focus states for accessibility */
-*:focus-visible {
-	outline: 3px solid var(--primary);
-	outline-offset: 2px;
-}
-
-/* Smooth transitions */
-* {
-	transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-/* Print styles */
 @media print {
-	.background-animation,
 	.btn,
-	.header-stats {
+	.header-stats,
+	.hero-carousel {
 		display: none;
 	}
 
@@ -832,40 +800,3 @@ html {
 		border: 1px solid var(--gray-light);
 	}
 }
-.hero-carousel {
-	position: fixed; /* stays in background */
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100vh;
-	overflow: hidden;
-	z-index: -1; /* behind all content */
-}
-
-.hero-slide {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-size: cover; /* fills screen */
-	background-position: center; /* keep photo centered */
-	background-repeat: no-repeat;
-	image-rendering: high-quality; /* use best quality rendering */
-	opacity: 0;
-	transform: scale(1);
-	transition: opacity 1.8s ease-in-out, transform 8s ease-in-out;
-}
-
-	.hero-slide.active {
-		opacity: 1;
-		transform: scale(1.08); /* smooth zoom */
-		filter: brightness(1.15); /* make image pop */
-	}
-
-	.hero-slide::after {
-		content: "";
-		position: absolute;
-		inset: 0;
-		background: linear-gradient( 135deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.55) 100% );
-	}
